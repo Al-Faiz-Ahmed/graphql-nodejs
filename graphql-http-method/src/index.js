@@ -11,6 +11,7 @@ import { ruruHTML } from 'ruru/server';
 
 // buildSchema() parses a GraphQL schema string and returns a GraphQLSchema object
 // This defines the structure of your API - what queries and mutations are available
+
 // const schema = buildSchema(`
 //   # Query type - All read operations go here
 //   type Query {
@@ -125,6 +126,7 @@ let nextId = 4;
 
 // Resolvers are functions that return data for each field in your schema
 // The resolver function names must match the field names in the schema
+
 // const rootValue = {
   
 //   // ----------------

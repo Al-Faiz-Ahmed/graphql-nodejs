@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run frontend",
+        "type": "shell",
+        "command": "cd frontend && npm run dev", // Change this to your first command
+        "problemMatcher": [],
+        "presentation": {
+          "group": "group-1" 
+        }
+      },
+      {
+        "label": "Run graphql-http",
+        "type": "shell",
+        "command": "cd graphql-http-method && npm run dev", // Change this to your second command
+        "problemMatcher": [],
+        "presentation": {
+          "group": "group-2"
+        }
+      },
+      {
+        "label": "Run Both",
+        "dependsOn": [
+          "Run frontend",
+          "Run graphql-http"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
