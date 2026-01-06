@@ -20,10 +20,19 @@
         }
       },
       {
+        "label": "Run graphql-apollo",
+        "type": "shell",
+        "command": "cd graphql-apollo-method && npm run dev", // Change this to your second command
+        "problemMatcher": [],
+        "presentation": {
+          "group": "group-2"
+        }
+      },
+      {
         "label": "Run Both",
         "dependsOn": [
           "Run frontend",
-          "Run graphql-http"
+          "Run graphql-apollo"
         ],
         "group": {
           "kind": "build",
