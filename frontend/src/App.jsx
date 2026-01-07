@@ -3,6 +3,11 @@ import { useState } from 'react'
 import './App.css'
 import { useGraphQL } from './hooks/use-graphql'
 import { GET_TODOS } from './queries/todo-queries'
+import {useApollo} from './hooks/use-apollo'
+import { GET_ALL_USERS, GET_USER_BY_ID } from './queries/user-queries'
+import ErrorBoundary from './global-error'
+import { useQuery } from '@apollo/client/react'
+import { gql } from '@apollo/client'
 
 function App() {
 
@@ -13,6 +18,10 @@ function App() {
       <div>Cheking Graphql</div>
       
       <FetcherComp title='Fetch Todos' />
+      <ErrorBoundary>
+
+      <ApolloFetch title='Fetch Users' />
+      </ ErrorBoundary>
       
     </>
   )
@@ -32,6 +41,37 @@ const FetcherComp = ({title=""}) => {
 <div style={{width:"100%"}}>
         <div style={{display:"flex", justifyContent:"space-between",width:"100%"}}>{title} <button 
         onClick={fetchNow}
+        style={{textTransform:"uppercase"}}>{title}</button></div>
+        <div>
+           {data && data.length !== 0 ? 
+            <p>data fetched Succesfully</p>
+            :
+            <p>No data returned</p>
+           }
+        </div>
+      </div>
+  )
+}
+
+const ApolloFetch = ({title=""}) => {
+    const {data,error,loading,refetch} =  useApollo(GET_USER_BY_ID)
+
+  //   const {data,error,loading,refetch} = useQuery(gql`query Get_ALL_USERS {
+  //   getAllUsers {
+  //     name
+  //     email
+  //   }
+  // }`)
+
+  
+
+  if (loading) return <p>Wait while loading the data</p>;
+  if (error) return <p>Error in fetching data </p>
+  
+  return (
+<div style={{width:"100%"}}>
+        <div style={{display:"flex", justifyContent:"space-between",width:"100%"}}>{title} <button 
+        onPointerDown={()=> {console.log("Faizan"); refetch({variables:{userId:"2"}})}}
         style={{textTransform:"uppercase"}}>{title}</button></div>
         <div>
            {data && data.length !== 0 ? 

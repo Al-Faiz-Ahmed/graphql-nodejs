@@ -31,7 +31,7 @@ const typeDefs = `#graphql
     getTodos: [Todo]
     getTodoById(id: ID!): Todo
     getAllUsers: [User]
-    getUserById(id: ID!): User
+    getUserById(id: ID): User
   }
 
 `;
